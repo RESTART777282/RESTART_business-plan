@@ -1,1 +1,1440 @@
-file:///Users/aliddch/Downloads/business_plan_restart.html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RESTART — Business Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --cream: #f5f0e8;
+    --gold: #c9a84c;
+    --gold-light: #e8d49a;
+    --rust: #c04b2a;
+    --muted: #7a7065;
+    --rule: #d9d0c0;
+    --section-bg: #faf7f2;
+    --arcade-green: #39ff14;
+    --arcade-bg: #0a0a0a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    background: var(--arcade-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 60px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  /* Scanline effect */
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,.18) 2px,
+      rgba(0,0,0,.18) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Corner decorations */
+  .corner { position: absolute; width: 40px; height: 40px; z-index: 2; }
+  .corner-tl { top: 30px; left: 30px; border-top: 2px solid var(--arcade-green); border-left: 2px solid var(--arcade-green); }
+  .corner-tr { top: 30px; right: 30px; border-top: 2px solid var(--arcade-green); border-right: 2px solid var(--arcade-green); }
+  .corner-bl { bottom: 30px; left: 30px; border-bottom: 2px solid var(--arcade-green); border-left: 2px solid var(--arcade-green); }
+  .corner-br { bottom: 30px; right: 30px; border-bottom: 2px solid var(--arcade-green); border-right: 2px solid var(--arcade-green); }
+
+  /* Pixel grid bg */
+  .cover-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(57,255,20,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(57,255,20,.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+    z-index: 0;
+  }
+
+  .cover-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* ARCADE LOGO */
+  .arcade-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 40px;
+  }
+
+  .logo-pixel-art {
+    display: grid;
+    grid-template-columns: repeat(11, 16px);
+    grid-template-rows: repeat(7, 16px);
+    gap: 2px;
+    margin-bottom: 20px;
+  }
+
+  .px { width: 16px; height: 16px; }
+  .px-g { background: var(--arcade-green); box-shadow: 0 0 6px var(--arcade-green); }
+  .px-y { background: #f5c518; box-shadow: 0 0 6px #f5c518; }
+  .px-r { background: var(--rust); box-shadow: 0 0 6px var(--rust); }
+  .px-0 { background: transparent; }
+
+  .logo-text {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(28px, 6vw, 52px);
+    color: var(--arcade-green);
+    letter-spacing: 6px;
+    text-shadow:
+      0 0 10px rgba(57,255,20,.6),
+      0 0 30px rgba(57,255,20,.3),
+      4px 4px 0 rgba(57,255,20,.15);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .logo-slogan {
+    font-family: 'Press Start 2P', monospace;
+    font-size: clamp(7px, 1.2vw, 10px);
+    color: rgba(57,255,20,.65);
+    letter-spacing: 3px;
+    line-height: 2;
+  }
+
+  /* INSERT COIN blink */
+  .insert-coin {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: #f5c518;
+    letter-spacing: 2px;
+    margin-top: 32px;
+    animation: blink 1.2s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* Business plan label */
+  .cover-bp-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(57,255,20,.5);
+    margin-bottom: 48px;
+  }
+
+  /* Founders */
+  .founders-block {
+    margin-top: 48px;
+    border: 1px solid rgba(57,255,20,.2);
+    padding: 28px 40px;
+    background: rgba(57,255,20,.03);
+  }
+
+  .founders-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: rgba(57,255,20,.5);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .founders-names {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 28px;
+  }
+
+  .founders-names span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,.85);
+    letter-spacing: .04em;
+  }
+
+  .founders-names span::before {
+    content: '▶ ';
+    color: var(--arcade-green);
+    font-size: 10px;
+  }
+
+  /* PIXEL LIVES (decorative) */
+  .lives-bar {
+    position: absolute;
+    top: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 3;
+  }
+
+  .life-icon {
+    font-size: 14px;
+    filter: drop-shadow(0 0 4px var(--arcade-green));
+  }
+
+  .score-bar {
+    position: absolute;
+    top: 36px;
+    right: 80px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: rgba(255,255,255,.3);
+    letter-spacing: 2px;
+    z-index: 3;
+  }
+
+  /* ── LAYOUT ── */
+  .page {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 90px 60px;
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .section-tag::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 1px;
+    background: var(--gold);
+  }
+
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 110px;
+    font-weight: 900;
+    color: rgba(201,168,76,.07);
+    line-height: 1;
+    margin-bottom: -56px;
+    display: block;
+    user-select: none;
+  }
+
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4.5vw, 50px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 36px;
+  }
+
+  h2.section-title em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  h3.sub-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 40px 0 16px;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 52px 0;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .divider-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  /* ── BODY TEXT ── */
+  .lead {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.75;
+    color: #2a2520;
+    margin-bottom: 28px;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: #3a3530;
+    margin-bottom: 18px;
+  }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote {
+    border-left: 3px solid var(--gold);
+    padding: 22px 30px;
+    margin: 36px 0;
+    background: rgba(201,168,76,.05);
+  }
+
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── CALLOUT BOX ── */
+  .callout {
+    background: var(--ink);
+    color: #fff;
+    padding: 36px 44px;
+    margin: 36px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .callout::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: -40px;
+    width: 110px; height: 110px;
+    border: 1px solid rgba(201,168,76,.2);
+    border-radius: 50%;
+  }
+
+  .callout-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .callout h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .callout p {
+    color: rgba(255,255,255,.7);
+    font-size: 14.5px;
+    margin: 0;
+  }
+
+  /* ── GRID CARDS ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin: 36px 0;
+  }
+
+  .card {
+    background: var(--section-bg);
+    border: 1px solid var(--rule);
+    padding: 28px 24px;
+  }
+
+  .card-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: .1em;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+
+  .card p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .card-accent {
+    background: var(--gold);
+  }
+  .card-accent h4, .card-accent p, .card-accent .card-number { color: var(--ink); }
+
+  .card-dark {
+    background: var(--ink);
+  }
+  .card-dark h4 { color: #fff; }
+  .card-dark p { color: rgba(255,255,255,.65); }
+  .card-dark .card-number { color: var(--gold); }
+
+  /* ── LIST ── */
+  .styled-list {
+    list-style: none;
+    margin: 20px 0;
+  }
+
+  .styled-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: #3a3530;
+  }
+
+  .styled-list li:last-child { border-bottom: none; }
+
+  .styled-list li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin-top: 8px;
+  }
+
+  /* ── PILLARS ── */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 36px 0;
+    background: var(--rule);
+  }
+
+  .pillar {
+    background: var(--cream);
+    padding: 36px 24px;
+    text-align: center;
+  }
+
+  .pillar-icon {
+    font-size: 26px;
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .pillar h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--ink);
+  }
+
+  .pillar p {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── COMPARISON TABLE ── */
+  .vp-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 28px 0;
+    font-size: 13.5px;
+  }
+
+  .vp-table thead tr { background: var(--ink); color: #fff; }
+
+  .vp-table thead th {
+    padding: 14px 16px;
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .vp-table thead th:first-child { color: var(--gold); }
+
+  .vp-table tbody tr { border-bottom: 1px solid var(--rule); }
+  .vp-table tbody tr:nth-child(even) { background: var(--section-bg); }
+
+  .vp-table td {
+    padding: 12px 16px;
+    vertical-align: top;
+    line-height: 1.55;
+    color: #3a3530;
+  }
+
+  .vp-table td:first-child {
+    font-weight: 500;
+    color: var(--ink);
+    min-width: 130px;
+  }
+
+  .check { color: #2d8a4e; font-weight: 700; }
+  .cross { color: #c04b2a; font-weight: 700; }
+
+  /* ── TOOLS GRID ── */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--rule);
+    margin: 36px 0;
+  }
+
+  .tool-item {
+    background: var(--cream);
+    padding: 28px;
+  }
+
+  .tool-emoji {
+    font-size: 22px;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .tool-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .tool-item p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── STATS ROW ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--rule);
+    margin: 36px 0;
+  }
+
+  .stat {
+    background: var(--section-bg);
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 11.5px;
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: .11em;
+    color: var(--muted);
+  }
+
+  /* ── COMPETITOR BLOCK ── */
+  .competitor-block {
+    border: 1px solid var(--rule);
+    margin: 20px 0;
+    overflow: hidden;
+  }
+
+  .competitor-header {
+    background: var(--section-bg);
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .competitor-header h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    flex: 1;
+  }
+
+  .competitor-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid var(--rule);
+    color: var(--muted);
+  }
+
+  .competitor-tag.direct { border-color: var(--rust); color: var(--rust); }
+  .competitor-tag.indirect { border-color: var(--muted); color: var(--muted); }
+
+  .competitor-body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+
+  .comp-col {
+    padding: 16px 20px;
+    border-right: 1px solid var(--rule);
+    font-size: 13px;
+    line-height: 1.6;
+    color: #3a3530;
+  }
+
+  .comp-col:last-child { border-right: none; }
+
+  .comp-col-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .comp-col ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .comp-col ul li {
+    padding: 3px 0;
+    font-size: 12.5px;
+  }
+
+  .comp-col ul li::before {
+    content: '— ';
+    color: var(--gold);
+    font-size: 10px;
+  }
+
+  /* ── ODD ── */
+  .odd-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--rule);
+    margin: 36px 0;
+  }
+
+  .odd-item {
+    background: var(--cream);
+    padding: 28px 22px;
+  }
+
+  .odd-number {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .odd-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .odd-item p {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── JURIDIQUE ── */
+  .juridique-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--rule);
+    margin: 36px 0;
+  }
+
+  .jur-item {
+    background: var(--section-bg);
+    padding: 28px 24px;
+  }
+
+  .jur-item h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .jur-item p {
+    font-size: 13.5px;
+    color: #3a3530;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ── SECTION BREAK ── */
+  .section-break { height: 1px; background: var(--rule); }
+
+  /* ── FOOTER ── */
+  .doc-footer {
+    background: var(--arcade-bg);
+    padding: 40px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .doc-footer-logo {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 14px;
+    color: var(--arcade-green);
+    text-shadow: 0 0 8px rgba(57,255,20,.4);
+  }
+
+  .doc-footer span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.3);
+  }
+
+  @media (max-width: 700px) {
+    .cover { padding: 60px 24px; }
+    .page { padding: 60px 20px; }
+    .card-grid, .pillars, .tools-grid, .stats-row, .odd-grid, .juridique-grid { grid-template-columns: 1fr; }
+    .competitor-body { grid-template-columns: 1fr; }
+    .doc-footer { padding: 32px 24px; flex-direction: column; gap: 16px; text-align: center; }
+    .founders-names { flex-direction: column; align-items: center; }
+    .logo-text { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ COVER ═══════════════ -->
+<div class="cover">
+  <div class="cover-bg-grid"></div>
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <div class="lives-bar">
+    <span class="life-icon">♥</span>
+    <span class="life-icon">♥</span>
+    <span class="life-icon">♥</span>
+  </div>
+  <div class="score-bar">BUSINESS PLAN 2025</div>
+
+  <div class="cover-inner">
+    <div class="cover-bp-label">Business Plan — Document de travail</div>
+
+    <div class="arcade-logo">
+      <!-- Pixel art logo: stylized running figure + arrow -->
+      <svg width="176" height="112" viewBox="0 0 176 112" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:16px">
+        <!-- Ground line -->
+        <rect x="0" y="96" width="176" height="4" fill="rgba(57,255,20,0.2)"/>
+        <!-- Running figure (pixel art style) -->
+        <!-- Head -->
+        <rect x="32" y="8" width="16" height="16" fill="#39ff14" filter="url(#glow)"/>
+        <!-- Body -->
+        <rect x="32" y="24" width="16" height="20" fill="#39ff14"/>
+        <!-- Arm back -->
+        <rect x="16" y="28" width="16" height="8" fill="#39ff14"/>
+        <!-- Arm front -->
+        <rect x="48" y="32" width="16" height="8" fill="#39ff14"/>
+        <!-- Leg left (back, raised) -->
+        <rect x="24" y="44" width="8" height="20" fill="#39ff14"/>
+        <rect x="16" y="56" width="12" height="8" fill="#39ff14"/>
+        <!-- Leg right (front, down) -->
+        <rect x="36" y="44" width="8" height="28" fill="#39ff14"/>
+        <rect x="36" y="72" width="16" height="8" fill="#39ff14"/>
+
+        <!-- Arrow / progress indicator -->
+        <rect x="80" y="44" width="12" height="8" fill="#f5c518" filter="url(#glow2)"/>
+        <rect x="92" y="36" width="12" height="8" fill="#f5c518"/>
+        <rect x="104" y="28" width="12" height="8" fill="#f5c518"/>
+        <rect x="116" y="20" width="12" height="8" fill="#f5c518"/>
+        <!-- Arrow head -->
+        <rect x="128" y="12" width="8" height="8" fill="#f5c518"/>
+        <rect x="136" y="20" width="8" height="8" fill="#f5c518"/>
+        <rect x="128" y="28" width="8" height="8" fill="#f5c518"/>
+
+        <!-- Stars/dots -->
+        <rect x="100" y="60" width="6" height="6" fill="rgba(57,255,20,0.5)"/>
+        <rect x="144" y="52" width="6" height="6" fill="rgba(245,197,24,0.5)"/>
+        <rect x="160" y="36" width="4" height="4" fill="rgba(192,75,42,0.7)"/>
+
+        <defs>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="glow2" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+      </svg>
+
+      <div class="logo-text">RESTART</div>
+      <div class="logo-slogan">BOUGEZ · RENCONTREZ · PROGRESSEZ</div>
+    </div>
+
+    <div class="insert-coin">▶ PRESS START TO BEGIN ◀</div>
+
+    <div class="founders-block">
+      <span class="founders-label">Fondateurs</span>
+      <div class="founders-names">
+        <span>Ali Daadouche</span>
+        <span>Loris Triolo</span>
+        <span>Kenza Provenzano</span>
+        <span>Sophie Alves Da Cruz</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ TABLE DES MATIÈRES ═══════════════ -->
+<div class="page" style="padding-bottom:40px;">
+  <span class="section-tag">Sommaire</span>
+  <div style="margin-top:8px;">
+    <table style="width:100%;border-collapse:collapse;font-size:14px;">
+      <tr style="border-bottom:1px solid var(--rule);padding:10px 0;">
+        <td style="padding:10px 0;color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;width:60px;">01</td>
+        <td style="padding:10px 0;font-weight:500;">Concept</td>
+        <td style="padding:10px 0;text-align:right;color:var(--gold);font-family:'DM Mono',monospace;font-size:10px;">Structure · Niveaux · Objectif</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--rule);">
+        <td style="padding:10px 0;color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;">02</td>
+        <td style="padding:10px 0;font-weight:500;">Proposition de valeur</td>
+        <td style="padding:10px 0;text-align:right;color:var(--gold);font-family:'DM Mono',monospace;font-size:10px;">Différenciateurs · Communauté</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--rule);">
+        <td style="padding:10px 0;color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;">03</td>
+        <td style="padding:10px 0;font-weight:500;">Analyse de la clientèle</td>
+        <td style="padding:10px 0;text-align:right;color:var(--gold);font-family:'DM Mono',monospace;font-size:10px;">Public cible · Besoins · Freins</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--rule);">
+        <td style="padding:10px 0;color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;">04</td>
+        <td style="padding:10px 0;font-weight:500;">Analyse de la concurrence</td>
+        <td style="padding:10px 0;text-align:right;color:var(--gold);font-family:'DM Mono',monospace;font-size:10px;">Directs · Indirects · Différenciation</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--rule);">
+        <td style="padding:10px 0;color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;">05</td>
+        <td style="padding:10px 0;font-weight:500;">Analyse des fournisseurs</td>
+        <td style="padding:10px 0;text-align:right;color:var(--gold);font-family:'DM Mono',monospace;font-size:10px;">Partenaires · Stratégie locale</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--rule);">
+        <td style="padding:10px 0;color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;">06</td>
+        <td style="padding:10px 0;font-weight:500;">Stratégie de communication</td>
+        <td style="padding:10px 0;text-align:right;color:var(--gold);font-family:'DM Mono',monospace;font-size:10px;">Canaux · Localisation · Slogan</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--rule);">
+        <td style="padding:10px 0;color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;">07</td>
+        <td style="padding:10px 0;font-weight:500;">Forme juridique</td>
+        <td style="padding:10px 0;text-align:right;color:var(--gold);font-family:'DM Mono',monospace;font-size:10px;">SRL · Statuts · Coûts</td>
+      </tr>
+      <tr>
+        <td style="padding:10px 0;color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;">08</td>
+        <td style="padding:10px 0;font-weight:500;">ODD — Développement durable</td>
+        <td style="padding:10px 0;text-align:right;color:var(--gold);font-family:'DM Mono',monospace;font-size:10px;">6 objectifs · Impact social</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="section-break"></div>
+
+<!-- ═══════════════ SECTION 1 : CONCEPT ═══════════════ -->
+<div class="page">
+  <span class="section-num">01</span>
+  <span class="section-tag">Section 1</span>
+  <h2 class="section-title">Le <em>Concept</em></h2>
+
+  <p class="lead">
+    RESTART est un programme sportif structuré sur 9 mois, conçu pour les adultes de 30 à 45 ans sans expérience sportive récente. L'objectif : les mener, étape par étape, jusqu'à leur première compétition HYROX — entourés d'une communauté bienveillante et engagée.
+  </p>
+
+  <p>
+    Le programme répond à un constat simple : des millions d'adultes veulent se remettre au sport, mais ne trouvent nulle part un cadre qui leur ressemble. Les salles classiques proposent des machines sans accompagnement. Les coachs individuels coûtent cher. Les clubs de CrossFit intimident les débutants. RESTART occupe cet espace vide — un programme progressif, collectif, humain, avec un vrai cap.
+  </p>
+
+  <div class="pull-quote">
+    <p>« RESTART ne vend pas un abonnement de salle. Il propose une transformation — physique, mentale, et sociale — sur 9 mois. »</p>
+  </div>
+
+  <div class="divider"><div class="divider-dot"></div></div>
+
+  <span class="section-tag">Structure du programme — 3 niveaux</span>
+
+  <div class="card-grid">
+    <div class="card">
+      <span class="card-number">Niveau 01 — Mois 1 à 3</span>
+      <h4>Starter</h4>
+      <p>Reprendre une activité physique, apprendre les bases. 2 séances / semaine. Marche rapide, squats, lunges, gainage, mobilité. Objectif : courir 3 km et tenir un circuit de 30 min.</p>
+    </div>
+    <div class="card">
+      <span class="card-number">Niveau 02 — Mois 4 à 6</span>
+      <h4>Challenger</h4>
+      <p>Améliorer l'endurance et la force. 3 séances / semaine. Introduction aux exercices HYROX : farmer carry, sled push, wall balls, burpees. Objectif : 5 km.</p>
+    </div>
+    <div class="card card-accent">
+      <span class="card-number">Niveau 03 — Mois 7 à 9</span>
+      <h4>Competitor</h4>
+      <p>Préparer la compétition. 3 à 4 séances / semaine. Simulations HYROX, circuits intensifs, stratégie et récupération. Objectif : finir une simulation complète.</p>
+    </div>
+    <div class="card card-dark">
+      <span class="card-number">Objectif final</span>
+      <h4>🏁 Compétition HYROX</h4>
+      <p>Participation à la vraie compétition. Un défi concret et partagé — la récompense de 9 mois de progression collective.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout-label">Positionnement clé</span>
+    <h3>Ni une salle. Ni un coach perso. Quelque chose de nouveau.</h3>
+    <p>RESTART combine l'accessibilité financière du collectif avec la chaleur d'un accompagnement humain — et y ajoute une communauté active qui transforme l'entraînement en expérience sociale.</p>
+  </div>
+</div>
+
+<div class="section-break"></div>
+
+<!-- ═══════════════ SECTION 2 : PROPOSITION DE VALEUR ═══════════════ -->
+<div class="page">
+  <span class="section-num">02</span>
+  <span class="section-tag">Section 2</span>
+  <h2 class="section-title">Proposition<br>de <em>valeur</em></h2>
+
+  <p class="lead">
+    Pour les adultes de 30 à 45 ans qui veulent se remettre au sport sans savoir par où commencer, RESTART propose un programme complet de 9 mois — avec une progression guidée, un encadrement humain, et une communauté qui dure bien au-delà de la compétition.
+  </p>
+
+  <div class="pillars">
+    <div class="pillar">
+      <span class="pillar-icon">🏋️</span>
+      <h4>Programme structuré</h4>
+      <p>3 niveaux progressifs, séances adaptées, objectif clair à chaque étape</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-icon">🤝</span>
+      <h4>Accompagnement humain</h4>
+      <p>Coaches actifs et investis — bien au-delà des séances en salle</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-icon">🔥</span>
+      <h4>Communauté engagée</h4>
+      <p>Binômes, WhatsApp, événements — les liens qui font qu'on revient</p>
+    </div>
+  </div>
+
+  <div class="divider"><div class="divider-dot"></div></div>
+
+  <span class="section-tag">Analyse comparative</span>
+
+  <table class="vp-table">
+    <thead>
+      <tr>
+        <th>Critère</th>
+        <th>RESTART</th>
+        <th>Salle classique</th>
+        <th>Coach individuel</th>
+        <th>CrossFit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Adapté débutants</td><td><span class="check">✓ Oui</span></td><td><span class="cross">✗ Peu</span></td><td><span class="check">✓ Oui</span></td><td><span class="cross">✗ Non</span></td></tr>
+      <tr><td>Objectif final concret</td><td><span class="check">✓ HYROX</span></td><td><span class="cross">✗ Absent</span></td><td>Variable</td><td>Variable</td></tr>
+      <tr><td>Dynamique de groupe</td><td><span class="check">✓ Centrale</span></td><td><span class="cross">✗ Quasi nulle</span></td><td><span class="cross">✗ Absente</span></td><td><span class="check">✓ Forte</span></td></tr>
+      <tr><td>Communauté organisée</td><td><span class="check">✓ WhatsApp, binômes</span></td><td><span class="cross">✗ Absente</span></td><td><span class="cross">✗ Absente</span></td><td>Informelle</td></tr>
+      <tr><td>Accompagnement continu</td><td><span class="check">✓ 7j/7</span></td><td><span class="cross">✗ Absent</span></td><td><span class="check">✓ Individuel</span></td><td>Partiel</td></tr>
+      <tr><td>Accessibilité financière</td><td><span class="check">✓ Collectif</span></td><td><span class="check">✓ Oui</span></td><td><span class="cross">✗ Coûteux</span></td><td>Moyen</td></tr>
+    </tbody>
+  </table>
+
+  <div class="divider"><div class="divider-dot"></div></div>
+
+  <span class="section-tag">La communauté — cœur du produit</span>
+
+  <div class="stats-row">
+    <div class="stat"><span class="stat-value">73%</span><span class="stat-label">des débutants abandonnent seuls dans les 3 premiers mois</span></div>
+    <div class="stat"><span class="stat-value">2×</span><span class="stat-label">plus de rétention avec un programme en groupe structuré</span></div>
+    <div class="stat"><span class="stat-value">9 mois</span><span class="stat-label">d'accompagnement continu en salle et hors salle</span></div>
+  </div>
+
+  <div class="tools-grid">
+    <div class="tool-item"><span class="tool-emoji">💬</span><h4>Groupe WhatsApp actif</h4><p>Horaires, encouragements quotidiens, partage de recettes healthy, célébration des progrès. Les coaches présents et réactifs.</p></div>
+    <div class="tool-item"><span class="tool-emoji">🤜🤛</span><h4>Système de binômes</h4><p>Formulaire de personnalité + objectifs pour créer des paires compatibles. Savoir qu'un partenaire nous attend, c'est la meilleure raison de venir.</p></div>
+    <div class="tool-item"><span class="tool-emoji">🎁</span><h4>Programme de parrainage</h4><p>Un participant qui amène un ami reçoit une réduction sur le niveau suivant, un accès bonus, ou un cadeau sportif.</p></div>
+    <div class="tool-item"><span class="tool-emoji">🥗</span><h4>Culture & lifestyle partagé</h4><p>Recettes, conseils récupération, partage interculturel. Le programme devient un mode de vie, pas seulement des séances.</p></div>
+    <div class="tool-item"><span class="tool-emoji">☕</span><h4>Moments informels</h4><p>Café après séance, repas partagé, randonnée en groupe, soirée pré-compétition. Ces moments hors salle créent les vraies amitiés.</p></div>
+    <div class="tool-item"><span class="tool-emoji">🏅</span><h4>Récompenses & jalons</h4><p>Premier 3 km couru, passage de niveau, simulation terminée — chaque étape est célébrée collectivement.</p></div>
+  </div>
+</div>
+
+<div class="section-break"></div>
+
+<!-- ═══════════════ SECTION 3 : CLIENTÈLE ═══════════════ -->
+<div class="page">
+  <span class="section-num">03</span>
+  <span class="section-tag">Section 3</span>
+  <h2 class="section-title">Analyse de la <em>clientèle</em></h2>
+
+  <p class="lead">1 adulte sur 2 entre 30 et 45 ans ne pratique aucune activité physique régulière.</p>
+
+  <p>RESTART s'adresse aux adultes de 30 à 45 ans qui souhaitent se mettre au sport sans pression, mais ne savent pas par où commencer. Il s'agit souvent de personnes qui ne sont pas opposées au sport, mais qui ont besoin d'un cadre clair et réaliste, d'une motivation régulière, d'un accompagnement humain et d'une dimension sociale qui les aide à rester engagées.</p>
+
+  <p>Cette clientèle cherche avant tout à retrouver de l'énergie, de la confiance, de la régularité et une meilleure santé. Le programme s'adapte à leur quotidien pour les aider à sortir de leurs mauvaises habitudes et relancer une dynamique positive.</p>
+
+  <div class="divider"><div class="divider-dot"></div></div>
+
+  <span class="section-tag">Profil détaillé</span>
+
+  <div class="card-grid">
+    <div class="card">
+      <span class="card-number">Qui sont-ils ?</span>
+      <h4>Le profil type</h4>
+      <p>30–45 ans, actifs professionnellement, souvent parents. Ont arrêté le sport depuis des années, ou n'en ont jamais fait régulièrement. Manquent de temps perçu et de cadre.</p>
+    </div>
+    <div class="card">
+      <span class="card-number">Que cherchent-ils ?</span>
+      <h4>Leurs motivations</h4>
+      <p>Retrouver de l'énergie, perdre du poids, réduire le stress, se sentir mieux dans leur corps — et rencontrer des gens dans la même situation.</p>
+    </div>
+    <div class="card">
+      <span class="card-number">Quels sont leurs freins ?</span>
+      <h4>Les obstacles</h4>
+      <p>Peur de ne pas être au niveau, intimidation en salle, manque de motivation seul, peur des blessures, sentiment de ne pas savoir quoi faire.</p>
+    </div>
+    <div class="card card-accent">
+      <span class="card-number">Ce dont ils ont besoin</span>
+      <h4>La solution RESTART</h4>
+      <p>Un cadre progressif et rassurant, des gens comme eux, un objectif motivant, et des coaches qui les suivent vraiment — pas juste une carte d'accès.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section-break"></div>
+
+<!-- ═══════════════ SECTION 4 : CONCURRENCE ═══════════════ -->
+<div class="page">
+  <span class="section-num">04</span>
+  <span class="section-tag">Section 4</span>
+  <h2 class="section-title">Analyse de la <em>concurrence</em></h2>
+
+  <h3 class="sub-title">Concurrents directs</h3>
+
+  <div class="competitor-block">
+    <div class="competitor-header">
+      <h4>Salles de sport classiques — Basic-Fit, JIMS Fitness</h4>
+      <span class="competitor-tag direct">Direct</span>
+    </div>
+    <div class="competitor-body">
+      <div class="comp-col">
+        <span class="comp-col-label">Description</span>
+        <p style="font-size:13px;">Chaînes de fitness avec accès libre aux machines et parfois des cours collectifs. Très présentes à Bruxelles, au moins une par ville en périphérie.</p>
+      </div>
+      <div class="comp-col">
+        <span class="comp-col-label">Forces / Faiblesses</span>
+        <ul>
+          <li>Prix bas (20–40 €/mois)</li>
+          <li>Accessibles, horaires larges</li>
+          <li>Pas de suivi personnalisé</li>
+          <li>Abandon fréquent des débutants</li>
+        </ul>
+      </div>
+      <div class="comp-col">
+        <span class="comp-col-label">Valeurs</span>
+        <ul>
+          <li>Accessibilité</li>
+          <li>Autonomie</li>
+          <li>Fitness grand public</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitor-block">
+    <div class="competitor-header">
+      <h4>Salles de cross-training — CrossFit</h4>
+      <span class="competitor-tag direct">Direct</span>
+    </div>
+    <div class="competitor-body">
+      <div class="comp-col">
+        <span class="comp-col-label">Description</span>
+        <p style="font-size:13px;">Salles spécialisées dans le sport intensif en groupe. Présentes à Bruxelles et dans quelques villes en périphérie. Coaching inclus.</p>
+      </div>
+      <div class="comp-col">
+        <span class="comp-col-label">Forces / Faiblesses</span>
+        <ul>
+          <li>Esprit de communauté fort</li>
+          <li>Coaching encadré</li>
+          <li>Intensité élevée — pas pour débutants</li>
+          <li>Image intimidante, prix élevé</li>
+        </ul>
+      </div>
+      <div class="comp-col">
+        <span class="comp-col-label">Valeurs</span>
+        <ul>
+          <li>Performance</li>
+          <li>Dépassement de soi</li>
+          <li>Intensité / famille</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitor-block">
+    <div class="competitor-header">
+      <h4>HYROX — Organisation d'événements sportifs</h4>
+      <span class="competitor-tag direct">Direct</span>
+    </div>
+    <div class="competitor-body">
+      <div class="comp-col">
+        <span class="comp-col-label">Description</span>
+        <p style="font-size:13px;">Organisation internationale de compétitions fitness standardisées. Événements dans de nombreuses villes mondiales.</p>
+      </div>
+      <div class="comp-col">
+        <span class="comp-col-label">Forces / Faiblesses</span>
+        <ul>
+          <li>Forte notoriété mondiale</li>
+          <li>Objectif concret et motivant</li>
+          <li>Pas de préparation incluse</li>
+          <li>Peu accessible aux débutants</li>
+        </ul>
+      </div>
+      <div class="comp-col">
+        <span class="comp-col-label">Valeurs</span>
+        <ul>
+          <li>Performance</li>
+          <li>Challenge</li>
+          <li>Compétition</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub-title">Concurrents indirects</h3>
+
+  <div class="competitor-block">
+    <div class="competitor-header">
+      <h4>Coachs individuels indépendants</h4>
+      <span class="competitor-tag indirect">Indirect</span>
+    </div>
+    <div class="competitor-body">
+      <div class="comp-col">
+        <span class="comp-col-label">Description</span>
+        <p style="font-size:13px;">Coachs proposant un suivi personnalisé, en présentiel ou en ligne.</p>
+      </div>
+      <div class="comp-col">
+        <span class="comp-col-label">Forces / Faiblesses</span>
+        <ul>
+          <li>Accompagnement sur mesure</li>
+          <li>Très coûteux (50–80 €/séance)</li>
+          <li>Pas de dynamique de groupe</li>
+        </ul>
+      </div>
+      <div class="comp-col">
+        <span class="comp-col-label">Valeurs</span>
+        <ul><li>Personnalisation</li><li>Performance individuelle</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="competitor-block">
+    <div class="competitor-header">
+      <h4>Applications & programmes fitness en ligne</h4>
+      <span class="competitor-tag indirect">Indirect</span>
+    </div>
+    <div class="competitor-body">
+      <div class="comp-col">
+        <span class="comp-col-label">Description</span>
+        <p style="font-size:13px;">Applications mobiles ou programmes vidéo accessibles à la demande, gratuits ou à faible coût.</p>
+      </div>
+      <div class="comp-col">
+        <span class="comp-col-label">Forces / Faiblesses</span>
+        <ul>
+          <li>Peu chers ou gratuits</li>
+          <li>Accessibles partout</li>
+          <li>Aucun encadrement réel</li>
+          <li>Taux d'abandon très élevé</li>
+        </ul>
+      </div>
+      <div class="comp-col">
+        <span class="comp-col-label">Valeurs</span>
+        <ul><li>Autonomie</li><li>Flexibilité</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"><div class="divider-dot"></div></div>
+
+  <span class="section-tag">Notre différenciation</span>
+
+  <div class="callout">
+    <span class="callout-label">Pourquoi RESTART se distingue</span>
+    <h3>Nous comblons un vide réel sur le marché.</h3>
+    <p>Programme progressif sans intimidation · Objectif concret (HYROX) · Coaching + progression par niveaux · Motivation collective · Communauté active · Réduction du taux d'abandon. Aucun concurrent ne combine ces éléments pour les débutants.</p>
+  </div>
+</div>
+
+<div class="section-break"></div>
+
+<!-- ═══════════════ SECTION 5 : FOURNISSEURS ═══════════════ -->
+<div class="page">
+  <span class="section-num">05</span>
+  <span class="section-tag">Section 5</span>
+  <h2 class="section-title">Analyse des <em>fournisseurs</em></h2>
+
+  <p>RESTART n'a pas vocation à posséder ses propres infrastructures. Le modèle repose sur des partenariats locaux, cohérents avec notre engagement de soutenir l'économie bruxelloise et de réduire l'empreinte carbone.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <span class="card-number">Fournisseur 1</span>
+      <h4>Salles de sport partenaires</h4>
+      <p><strong>Rôle :</strong> accueil des entraînements, accès au matériel.<br><br><strong>Avantages :</strong> matériel professionnel disponible, coûts réduits, possibilité de partenariat commercial.<br><br><strong>Inconvénients :</strong> dépendance aux disponibilités, moins de contrôle sur l'espace.</p>
+    </div>
+    <div class="card">
+      <span class="card-number">Fournisseur 2</span>
+      <h4>Lieu pour l'événement final</h4>
+      <p><strong>Type :</strong> entrepôt ou grande salle événementielle à Bruxelles pour la simulation HYROX.<br><br><strong>Avantages :</strong> espace adapté à un event, possibilité de créer une expérience unique.<br><br><strong>Inconvénients :</strong> coût de location élevé, gestion logistique.</p>
+    </div>
+    <div class="card">
+      <span class="card-number">Fournisseur 3</span>
+      <h4>Coaches sportifs (prestataires)</h4>
+      <p><strong>Profil :</strong> étudiants en Bac 3 en éducation physique, en stage de formation.<br><br><strong>Rôle :</strong> encadrer les séances, assurer la progression des participants.<br><br><strong>Avantages :</strong> expertise professionnelle, crédibilité, coût maîtrisé.</p>
+    </div>
+    <div class="card">
+      <span class="card-number">Fournisseur 4</span>
+      <h4>Communication & impression</h4>
+      <p><strong>Canaux :</strong> réseaux sociaux (Facebook, Instagram) + imprimeurs locaux pour flyers et affiches.<br><br><strong>Avantages :</strong> faible coût, grande portée.<br><br><strong>Inconvénients :</strong> dépendance aux algorithmes, nécessité de contenu régulier.</p>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    <p>« Nous privilégions des fournisseurs situés à Bruxelles afin de soutenir l'économie locale, réduire les déplacements et limiter notre empreinte carbone. »</p>
+  </div>
+</div>
+
+<div class="section-break"></div>
+
+<!-- ═══════════════ SECTION 6 : COMMUNICATION ═══════════════ -->
+<div class="page">
+  <span class="section-num">06</span>
+  <span class="section-tag">Section 6</span>
+  <h2 class="section-title">Stratégie de <em>communication</em></h2>
+
+  <p class="lead">RESTART : bouger, rencontrer, progresser.</p>
+
+  <p>Notre slogan traduit les trois promesses fondamentales du programme. <strong>Bouger</strong> : la remise en forme à travers des exercices accessibles et progressifs. <strong>Rencontrer</strong> : la dimension sociale, la communauté qui se soutient et se motive. <strong>Progresser</strong> : l'évolution visible et mesurable au fil des mois.</p>
+
+  <div class="divider"><div class="divider-dot"></div></div>
+
+  <span class="section-tag">Canaux & localisation</span>
+
+  <div class="tools-grid">
+    <div class="tool-item">
+      <span class="tool-emoji">📱</span>
+      <h4>Réseaux sociaux — Instagram & Facebook</h4>
+      <p>Contenu régulier : témoignages de participants, coulisses des séances, conseils nutrition, avant/après. Ciblage géographique Bruxelles + périphérie. Formats courts et authentiques pour toucher les 30–45 ans actifs sur ces plateformes.</p>
+    </div>
+    <div class="tool-item">
+      <span class="tool-emoji">🖨️</span>
+      <h4>Flyers & affiches — lieux ciblés</h4>
+      <p>Distribution dans les lieux fréquentés par notre cible : cabinets médicaux et kinés, crèches et écoles (parents), espaces communs de bureaux et coworkings, pharmacies, salles d'attente, supermarchés de quartier.</p>
+    </div>
+    <div class="tool-item">
+      <span class="tool-emoji">🏘️</span>
+      <h4>Partenariats locaux</h4>
+      <p>Collaboration avec des associations de quartier, comités de parents, mutuelles de santé, médecins généralistes. Un médecin qui recommande RESTART à un patient sédentaire est le meilleur vecteur de confiance.</p>
+    </div>
+    <div class="tool-item">
+      <span class="tool-emoji">🗣️</span>
+      <h4>Bouche-à-oreille & parrainage</h4>
+      <p>Le programme de parrainage amplifie la communication organique. Chaque participant satisfait est un ambassadeur. Un lien fort dans la communauté génère naturellement des recommandations.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section-break"></div>
+
+<!-- ═══════════════ SECTION 7 : FORME JURIDIQUE ═══════════════ -->
+<div class="page">
+  <span class="section-num">07</span>
+  <span class="section-tag">Section 7</span>
+  <h2 class="section-title">Forme <em>juridique</em></h2>
+
+  <p class="lead">RESTART sera constituée sous la forme d'une <strong>SRL — Société à Responsabilité Limitée</strong>.</p>
+
+  <div class="juridique-grid">
+    <div class="jur-item">
+      <h4>Pourquoi la SRL ?</h4>
+      <p>Cette forme est adaptée aux projets de type startup avec plusieurs fondateurs. Elle offre une protection du patrimoine personnel — les fondateurs ne risquent pas leurs biens privés en cas de difficulté. Elle confère également une image professionnelle auprès des partenaires (salles de sport, coachs, HYROX).</p>
+    </div>
+    <div class="jur-item">
+      <h4>Avantages</h4>
+      <p>Responsabilité financière limitée des fondateurs · Travail à plusieurs fondateurs · Crédibilité renforcée · Flexibilité pour évoluer · Structure adaptée à la croissance.</p>
+    </div>
+    <div class="jur-item">
+      <h4>Inconvénients</h4>
+      <p>Démarches administratives plus importantes · Comptabilité obligatoire · Coûts de création et de gestion · Organisation financière plus stricte qu'une entreprise individuelle.</p>
+    </div>
+    <div class="jur-item">
+      <h4>Coûts de création</h4>
+      <p>Passage chez notaire : 1 000–1 500 € · Frais administratifs + plan financier obligatoire · Total création : environ 1 500–2 000 €.</p>
+    </div>
+    <div class="jur-item">
+      <h4>Coûts de fonctionnement</h4>
+      <p>Comptable : 1 000–2 000 €/an · Cotisations sociales des fondateurs · Impôts sur les sociétés selon résultats.</p>
+    </div>
+    <div class="jur-item">
+      <h4>Statut des fondateurs</h4>
+      <p>Durant les 3 premières années : <strong>indépendant complémentaire</strong>. Cela permet de limiter les risques financiers, de conserver un revenu principal et de tester le projet avant de s'y consacrer à temps plein.</p>
+    </div>
+    <div class="jur-item">
+      <h4>Rémunération</h4>
+      <p>Au lancement, les revenus couvrent en priorité les charges opérationnelles (coachs, salles, matériel). Les fondateurs peuvent se verser une rémunération limitée ou réinvestir dans le projet. Cette flexibilité permet de sécuriser la phase de démarrage.</p>
+    </div>
+    <div class="jur-item">
+      <h4>Autorisations & obligations légales</h4>
+      <p>Inscription à la BCE (≈ 100 €) · Numéro de TVA · Assurance RC professionnelle (300–800 €/an) · Coachs qualifiés · Autorisation communale pour certains événements. Pas de licence complexe requise pour le coaching sportif en Belgique.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section-break"></div>
+
+<!-- ═══════════════ SECTION 8 : ODD ═══════════════ -->
+<div class="page">
+  <span class="section-num">08</span>
+  <span class="section-tag">Section 8</span>
+  <h2 class="section-title">Objectifs de <em>développement durable</em></h2>
+
+  <p class="lead">Le projet RESTART s'inscrit dans les Objectifs de Développement Durable (ODD) des Nations Unies en agissant sur des enjeux de santé, de cohésion sociale et de durabilité.</p>
+
+  <div class="odd-grid">
+    <div class="odd-item">
+      <span class="odd-number">ODD 3</span>
+      <h4>Bonne santé et bien-être</h4>
+      <p>RESTART lutte contre la sédentarité, le stress et la dépression grâce à une activité physique accessible et progressive, adaptée aux adultes sans expérience sportive.</p>
+    </div>
+    <div class="odd-item">
+      <span class="odd-number">ODD 10</span>
+      <h4>Réduction des inégalités</h4>
+      <p>Le programme rend le sport inclusif pour des publics éloignés des structures classiques, qu'ils soient freinés par le coût, l'intimidation ou le manque d'accès à l'information.</p>
+    </div>
+    <div class="odd-item">
+      <span class="odd-number">ODD 11</span>
+      <h4>Villes et communautés durables</h4>
+      <p>RESTART utilise des infrastructures existantes et recrée du lien social local, contribuant à des quartiers plus vivants et à une cohésion sociale renforcée à Bruxelles.</p>
+    </div>
+    <div class="odd-item">
+      <span class="odd-number">ODD 12</span>
+      <h4>Consommation responsable</h4>
+      <p>Le modèle mutualise les espaces et le matériel existants. Pas de construction, pas d'achat massif d'équipements — une approche sobre et efficiente des ressources.</p>
+    </div>
+    <div class="odd-item">
+      <span class="odd-number">ODD 13</span>
+      <h4>Lutte contre le changement climatique</h4>
+      <p>Fournisseurs locaux, déplacements limités, mutualisation des lieux : RESTART réduit activement son empreinte carbone à chaque dimension de son fonctionnement.</p>
+    </div>
+    <div class="odd-item">
+      <span class="odd-number">ODD 17</span>
+      <h4>Partenariats pour les objectifs</h4>
+      <p>RESTART favorise la coopération avec les acteurs locaux (salles, coachs, associations, médecins), construisant un écosystème partenarial durable et ancré dans le territoire.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout-label">Synthèse RSE</span>
+    <h3>Un modèle humain, local et responsable.</h3>
+    <p>RESTART ne se contente pas de proposer du sport. Il contribue à un mieux-être collectif, à la réduction des inégalités d'accès à l'activité physique, et à une économie locale plus solidaire.</p>
+  </div>
+</div>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<div class="doc-footer">
+  <span class="doc-footer-logo">RESTART</span>
+  <span>Bouger · Rencontrer · Progresser</span>
+  <span>Business Plan — Confidentiel</span>
+</div>
+
+</body>
+</html>
